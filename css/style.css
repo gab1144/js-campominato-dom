@@ -74,6 +74,7 @@ footer {
   height: calc(100vh - var(--header-height) - var(--footer-height));
   overflow: auto;
   margin-bottom: 50px;
+  position: relative;
 }
 
 .grid {
@@ -101,4 +102,12 @@ footer {
 
 footer span {
   display: block;
+}
+
+.end-no-click {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }

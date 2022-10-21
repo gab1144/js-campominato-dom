@@ -83,9 +83,9 @@ function endGame(won) {
   if(won) {
     endMessage.innerText = "Hai vinto";
   } else {
-    console.log("Hai perso")
     endMessage.innerText = "Hai perso";
     showBombs();
+    noClick();
   }
 }
 
@@ -97,4 +97,10 @@ function showBombs() {
       squares[i].classList.add('clicked-bomb')
     }
   }
+}
+
+function noClick() {
+  const end = document.createElement('div');
+  end.className = 'end-no-click';
+  document.querySelector(".main-game").append(end);
 }

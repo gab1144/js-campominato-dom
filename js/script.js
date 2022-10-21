@@ -101,8 +101,8 @@ function endGame(won) {
 function showBombs() {
   const squares = document.getElementsByClassName('square');
   for(let i=0; i < Math.pow(elementsPerRow, 2); i++) {
-    if(bombs.includes(i+1)) {
-      squares[i].classList.add('clicked-bomb')
+    if(bombs.includes(squares[i].idElement)) {
+      squares[i].classList.add('clicked-bomb');
     }
   }
 }

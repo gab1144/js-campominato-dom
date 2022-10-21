@@ -41,6 +41,14 @@ footer {
   padding: 0 30px;
 }
 
+/***** UTILITIES *****/
+.d-none {
+  display: none;
+}
+/***** /UTILITIES *****/
+
+/***** ----header---- *****/
+/***** logo *****/
 .logo {
   display: flex;
   align-items: center;
@@ -55,7 +63,9 @@ footer {
   font-weight: 900;
   display: block;
 }
+/***** logo *****/
 
+/***** menu *****/
 .menu {
   display: flex;
 }
@@ -67,7 +77,12 @@ footer {
 #level {
   margin-right: 20px;
 }
+/***** /menu *****/
+/***** ----/header---- *****/
 
+/***** ----main---- *****/
+/***** --game-- *****/
+/***** griglia *****/
 .main-game {
   display: flex;
   justify-content: center;
@@ -89,17 +104,15 @@ footer {
   align-items: center;
   border: 1px solid black;
 }
+/***** /griglia *****/
 
+/***** click *****/
 .clicked {
   background-color: greenyellow;
 }
 
 .clicked-bomb {
   background-color: red;
-}
-
-footer span {
-  display: block;
 }
 
 .end-no-click {
@@ -109,11 +122,18 @@ footer span {
   width: 100%;
   height: 100%;
 }
+/***** /click *****/
+/***** --/game-- *****/
 
-.d-none {
-  display: none;
-}
-
+/***** messaggio finale *****/
 #end-message {
   padding-top: 50px;
 }
+/***** /messaggio finale *****/
+/***** ----/main---- *****/
+
+/***** ----footer---- *****/
+footer span {
+  display: block;
+}
+/***** ----/footer---- *****/

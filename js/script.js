@@ -1,12 +1,16 @@
-const mainGame = document.querySelector('.main-game');
-const levels = [10, 9, 7];
-let elementsPerRow;
-const BOMBS_NUMBER = 16;
-let bombs = [];
-let score = 0;
+const mainGame = document.querySelector('.main-game');  //seleziona l'area di gioco
+const levels = [10, 9, 7];  //contine il numero di elementi per riga in base al livello
+let elementsPerRow; //numero di elementi per riga
+const BOMBS_NUMBER = 16;  //numero di bombe totali
+let bombs = [];   //array contente gli id delle celle corrispondenti alle bombe
+let score = 0;    //punteggio
 
+//attende il clik del botone per avviare la funzione play
 document.getElementById('play').addEventListener('click', play);
 
+/**
+ * Funzione principale che gestisce il gioco
+ */
 function play(){
   elementsPerRow = levels[parseInt(document.getElementById('level').value)];
   
@@ -18,6 +22,9 @@ function play(){
   
 }
 
+/**
+ * Effettua un reset del campo di gioco, del punteggio e elimina il messaggio finale
+ */
 function reset () {
   mainGame.innerHTML ='';
   score=0;
@@ -25,6 +32,9 @@ function reset () {
   document.getElementById('end-message').classList.add('d-none');
 }
 
+/**
+ * Genera il campo di gioco
+ */
 function generatePlayGround () {
   const grid = document.createElement("div");
   grid.className = 'grid';
@@ -36,7 +46,11 @@ function generatePlayGround () {
   grid.style.background= "white";
 }
 
-
+/**
+ * Genera i quadrati sulla base dell'id
+ * @param {*} id Intero (id del quadrato da creare)
+ * @returns quadrato con id uguale al parametro
+ */
 function createSquare(id) {
   const square = document.createElement('div');
   square.className = 'square';
@@ -48,10 +62,18 @@ function createSquare(id) {
   return square;
 }
 
+/**
+ * Genera una stringa con calc in css
+ * @returns stringa con cal (100% / numero_di_elementi_per_riga)
+ */
 function generateCalcCss() {
   return `calc(100% / ${elementsPerRow})`;
 }
 
+/**
+ * Gestisce l'evento click del quadrato; se non è una bomba calcola il punteggio e verifica la vittoria, altrimenti termina il gioco
+ * @param {*} event 
+ */
 function clickSquare(event) {
   console.log(this.idElement);
   if(!bombs.includes(this.idElement)) {
@@ -68,7 +90,10 @@ function clickSquare(event) {
   }
 
 }
-
+/**
+ * Genera gli id delle bombe sulla base dell'estrazione di numeri causali
+ * @returns array con id delle bombe
+ */
 function generateBombs() {
   const bombsGenerated = [];
 
@@ -81,10 +106,22 @@ function generateBombs() {
   return bombsGenerated;
 }
 
+/**
+ * Genera un numero casuale
+ * @param {*} min intero (estremo minimo compreso)
+ * @param {*} max intero (estremo massimo compreso)
+ * @returns numero casuali compreso tra i due estremi
+ */
 function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
+/**
+ * Effettua tutte le operazioni in base all'esito finale del gioco; se l'utente ha vinto 
+ * stampa il messaggio di vittoria, in caso contrario stampa il messaggio di sconfitta, 
+ * il punteggio ottenuto, mostra tutte le bombe e impedisce ulteriori clik
+ * @param {*} won booleano (valore su cui si basa l'esito, true in caso di vittoria, false in caso di sconfitta)
+ */
 function endGame(won) {
   const endMessage = document.getElementById('end-message');
   endMessage.classList.remove('d-none');
@@ -97,7 +134,9 @@ function endGame(won) {
   }
 }
 
-
+/**
+ * Mostra tutte le bombe
+ */
 function showBombs() {
   const squares = document.getElementsByClassName('square');
   for(let i=0; i < Math.pow(elementsPerRow, 2); i++) {
@@ -107,6 +146,9 @@ function showBombs() {
   }
 }
 
+/**
+ * Genera un div che copre il campo di gioco impedendo ulteriori click sui quadrati
+ */
 function noClick() {
   const end = document.createElement('div');
   end.className = 'end-no-click';

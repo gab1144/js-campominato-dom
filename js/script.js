@@ -21,6 +21,7 @@ function reset () {
   mainGame.innerHTML ='';
   score=0;
   document.getElementById('end-message').innerText="";
+  document.getElementById('end-message').classList.add('d-none');
 }
 
 function generatePlayGround () {
@@ -85,6 +86,7 @@ function getRndInteger(min, max) {
 
 function endGame(won) {
   const endMessage = document.getElementById('end-message');
+  endMessage.classList.remove('d-none');
   if(won) {
     endMessage.innerText = "Hai vinto";
   } else {

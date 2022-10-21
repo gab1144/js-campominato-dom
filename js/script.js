@@ -4,7 +4,7 @@ const BOMBS_NUMBER = 16;
 let bombs = [];
 let score = 0;
 
-document.getElementById('play').addEventListener('click', play)
+document.getElementById('play').addEventListener('click', play);
 
 function play(){
   elementsPerRow = parseInt(document.getElementById('level').value);
@@ -58,7 +58,6 @@ function clickSquare(event) {
     }
   } else {
     endGame(false);
-    this.classList.add('clicked-bomb');
   }
 
 }
@@ -80,22 +79,22 @@ function getRndInteger(min, max) {
 }
 
 function endGame(won) {
+  const endMessage = document.getElementById('end-message');
   if(won) {
-    console.log("Hai vinto");
+    endMessage.innerText = "Hai vinto";
   } else {
-    console.log("Hai perso");
-    //showBombs();
+    console.log("Hai perso")
+    endMessage.innerText = "Hai perso";
+    showBombs();
   }
 }
 
-/*
+
 function showBombs() {
   const squares = document.getElementsByClassName('square');
   for(let i=0; i < Math.pow(elementsPerRow, 2); i++) {
-    if(bombs.includes([squares[i].id])) {
-      console.log(squares[i].id);
-      squares[i].classList.add('clicked-bomb');
+    if(bombs.includes(i+1)) {
+      squares[i].classList.add('clicked-bomb')
     }
   }
 }
-*/

@@ -19,6 +19,8 @@ function play(){
 
 function reset () {
   mainGame.innerHTML ='';
+  score=0;
+  document.getElementById('end-message').innerText="";
 }
 
 function generatePlayGround () {
@@ -51,10 +53,13 @@ function generateCalcCss() {
 function clickSquare(event) {
   console.log(this.idElement);
   if(!bombs.includes(this.idElement)) {
-    this.classList.add('clicked');
-    score++;
-    if(score === (Math.pow(elementsPerRow, 2) - BOMBS_NUMBER)){
-      endGame(true);
+    if(!this.classList.contains("clicked")){
+
+      this.classList.add('clicked');
+      score++;
+      if(score === (Math.pow(elementsPerRow, 2) - BOMBS_NUMBER)){
+        endGame(true);
+      }
     }
   } else {
     endGame(false);
@@ -83,7 +88,7 @@ function endGame(won) {
   if(won) {
     endMessage.innerText = "Hai vinto";
   } else {
-    endMessage.innerText = "Hai perso";
+    endMessage.innerText = `Hai perso - Punteggio: ${score}`;
     showBombs();
     noClick();
   }

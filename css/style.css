@@ -87,7 +87,11 @@ footer {
 }
 
 .clicked {
-  background-color: var(--main-bg-color);
+  background-color: greenyellow;
+}
+
+.clicked-bomb {
+  background-color: red;
 }
 
 footer span {

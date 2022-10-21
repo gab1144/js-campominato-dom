@@ -1,5 +1,8 @@
 const mainGame = document.querySelector('.main-game');
 let elementsPerRow;
+const BOMBS_NUMBER = 16;
+let bombs = [];
+let score = 0;
 
 document.getElementById('play').addEventListener('click', play)
 
@@ -9,6 +12,8 @@ function play(){
   reset();
 
   generatePlayGround();
+
+  bombs = generateBombs();
   
 }
 
@@ -20,7 +25,6 @@ function generatePlayGround () {
   const grid = document.createElement("div");
   grid.className = 'grid';
   mainGame.appendChild(grid);
-  console.log('1');
   for (let i = 1; i <= Math.pow(elementsPerRow, 2); i++){
     grid.append(createSquare(i));
   }
@@ -29,7 +33,7 @@ function generatePlayGround () {
 }
 
 
-function createSquare(id){
+function createSquare(id) {
   const square = document.createElement('div');
   square.className = 'square';
   square.idElement = id;
@@ -40,11 +44,58 @@ function createSquare(id){
   return square;
 }
 
-function generateCalcCss(){
+function generateCalcCss() {
   return `calc(100% / ${elementsPerRow})`;
 }
 
-function clickSquare(event){
+function clickSquare(event) {
   console.log(this.idElement);
-  this.classList.add('clicked');
+  if(!bombs.includes(this.idElement)) {
+    this.classList.add('clicked');
+    score++;
+    if(score === (Math.pow(elementsPerRow, 2) - BOMBS_NUMBER)){
+      endGame(true);
+    }
+  } else {
+    endGame(false);
+    this.classList.add('clicked-bomb');
+  }
+
 }
+
+function generateBombs() {
+  const bombsGenerated = [];
+
+  while (bombsGenerated.length < BOMBS_NUMBER) {
+    const idBomb = getRndInteger(1, Math.pow(elementsPerRow, 2));
+    if(!bombsGenerated.includes(idBomb)) {
+      bombsGenerated.push(idBomb);
+    }
+  }
+  return bombsGenerated;
+}
+
+function getRndInteger(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
+function endGame(won) {
+  if(won) {
+    console.log("Hai vinto");
+  } else {
+    console.log("Hai perso");
+    //showBombs();
+  }
+}
+
+/*
+function showBombs() {
+  const squares = document.getElementsByClassName('square');
+  for(let i=0; i < Math.pow(elementsPerRow, 2); i++) {
+    if(bombs.includes([squares[i].id])) {
+      console.log(squares[i].id);
+      squares[i].classList.add('clicked-bomb');
+    }
+  }
+}
+*/

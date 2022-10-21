@@ -1,4 +1,5 @@
 const mainGame = document.querySelector('.main-game');
+const levels = [10, 9, 7];
 let elementsPerRow;
 const BOMBS_NUMBER = 16;
 let bombs = [];
@@ -7,7 +8,7 @@ let score = 0;
 document.getElementById('play').addEventListener('click', play);
 
 function play(){
-  elementsPerRow = parseInt(document.getElementById('level').value);
+  elementsPerRow = levels[parseInt(document.getElementById('level').value)];
   
   reset();
 

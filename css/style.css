@@ -20,7 +20,8 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 80px;
+  justify-content: center;
+  height: calc(100vh - var(--header-height) - var(--footer-height));
 }
 
 header {
@@ -71,8 +72,6 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - var(--header-height) - var(--footer-height));
-  overflow: auto;
   margin-bottom: 50px;
   position: relative;
 }
